@@ -48,3 +48,74 @@ function shiftCharCode(charCode, shiftFactor, base) {
 
 	return String.fromCharCode(shiftedCharCode);
 }
+
+export const calculator = {
+	// Add two numbers
+	add(x, y) {
+		// Validate inputs using the validateInputs method
+		const validationResult = this.validateInputs(x, y);
+		// If validation fails, return the error message
+		if (validationResult !== true) return validationResult;
+
+		const result = x + y;
+
+		// Round the result to 2 decimal places and convert it back to a number
+		return parseFloat(result.toFixed(2));
+	},
+
+	// Subtract the second number from the first
+	subtract(x, y) {
+		// Validate inputs
+		const validationResult = this.validateInputs(x, y);
+		// If validation fails, return the error message
+		if (validationResult !== true) return validationResult;
+
+		const result = x - y;
+
+		return parseFloat(result.toFixed(2));
+	},
+
+	// Multiply two numbers
+	multiply(x, y) {
+		// Validate inputs
+		const validationResult = this.validateInputs(x, y);
+		// If validation fails, return the error message
+		if (validationResult !== true) return validationResult;
+
+		const result = x * y;
+
+		return parseFloat(result.toFixed(2));
+	},
+
+	// Divide the first number by the second
+	divide(x, y) {
+		// Validate inputs
+		const validationResult = this.validateInputs(x, y);
+		// If validation fails, return the error message
+		if (validationResult !== true) return validationResult;
+
+		// Check if the divisor (y) is zero to avoid division by zero
+		if (y === 0) {
+			return "Error: Not possible to divide by 0";
+		}
+
+		const result = x / y;
+
+		return parseFloat(result.toFixed(2));
+	},
+
+	// Method to validate if inputs are numbers
+	validateInputs(x, y) {
+		// Check if either input is not a number
+		if (typeof x !== "number" || typeof y !== "number") {
+			// Log an error message to the console
+			console.error("Error: Make sure inputs are numbers.");
+
+			// Return an error message to be used by the calling method
+			return "Error: Make sure inputs are numbers.";
+		}
+
+		// If inputs are valid, return true
+		return true;
+	},
+};
