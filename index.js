@@ -119,3 +119,36 @@ export const calculator = {
 		return true;
 	},
 };
+
+/**
+ * Analyzes an array of numbers and returns an object containing
+ * the average, min, max, and length of the array.
+ *
+ * @param {Array} array - The array of numbers to analyze.
+ * @returns {Object|string} - An object with average, min, max, and length properties or an error message if the input is not an array.
+ */
+export function analyzeArray(array) {
+	// Check if the input is an array. If not, return an error message.
+	// This ensures the function only processes valid arrays.
+	if (!Array.isArray(array)) {
+		return "Error: Can only accept arrays.";
+	}
+
+	// Calculate the average of the array values.
+	// Using `reduce` to sum all values and dividing by the array length.
+	const average = array.reduce((sum, value) => sum + value, 0) / array.length;
+
+	// Find the minimum value in the array.
+	// Using the spread operator to pass array elements as arguments to Math.min.
+	const min = Math.min(...array);
+
+	// Find the maximum value in the array.
+	// Using the spread operator to pass array elements as arguments to Math.max.
+	const max = Math.max(...array);
+
+	// Get the length of the array.
+	const length = array.length;
+
+	// Return an object containing the calculated values.
+	return { average, min, max, length };
+}
